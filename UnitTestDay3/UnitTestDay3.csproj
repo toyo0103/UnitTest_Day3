@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusRouteDTO.cs" />
+    <Compile Include="NetTools\IRestSharp.cs" />
+    <Compile Include="NetTools\MyRestSharp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PTX.cs" />

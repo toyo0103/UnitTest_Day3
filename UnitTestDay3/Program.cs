@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using UnitTestDay3.NetTools;
+
 namespace UnitTestDay3
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var PTXFunction = new PTX();
+            //new PTX時變成要帶入呼叫API的實體
+            var PTXFunction = new PTX(new MyRestSharp());
 
             var Result = PTXFunction.Get("Taipei","307");
 

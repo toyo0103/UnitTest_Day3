@@ -4,10 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Newtonsoft.Json;
+using UnitTestDay3.NetTools;
+
 namespace UnitTestDay3
 {
     public class PTX
     {
+        IRestSharp _MyRestSharp;
+
+        /// <summary>
+        /// Construct
+        /// </summary>
+        /// <param name="myRestSharp">外部注入呼叫API的實體</param>
+        public PTX(IRestSharp myRestSharp)
+        {
+            //改由外部注入呼叫API的實體
+            this._MyRestSharp = myRestSharp;
+        }
+
         /// <summary>
         /// 取得巴士路線資料
         /// </summary>
@@ -17,8 +31,11 @@ namespace UnitTestDay3
         public BusRouteDTO Get(string city,string routeName)
         {
             BusRouteDTO Result = null;
-            
-            var JsonResult = CallAPI(city, routeName);
+
+            //要呼叫的API Url
+            string Url = string.Format($"http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/City/{city}/{routeName}?%24top=1&%24format=JSON");
+
+            var JsonResult = _MyRestSharp.Get(Url);
 
             if (!string.IsNullOrEmpty(JsonResult))
             {
@@ -45,28 +62,6 @@ namespace UnitTestDay3
             }
     
             return Result;
-        }
-
-        /// <summary>
-        /// Call API
-        /// </summary>
-        /// <param name="city">縣市</param>
-        /// <param name="routeName">巴士路線名稱</param>
-        /// <returns></returns>
-        protected virtual string CallAPI(string city, string routeName)
-        {
-            //Use RestSharp Call API
-            var client = new RestClient($"http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/City/{city}/{routeName}?%24top=1&%24format=JSON");
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("cache-control", "no-cache");
-            IRestResponse response = client.Execute(request);
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                return response.Content;
-            }
-
-            return string.Empty;
         }
     }
 }

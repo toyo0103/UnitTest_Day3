@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly:InternalsVisibleTo("UnitTestDay3Tests")]
 
 // 將 ComVisible 設為 false 可對 COM 元件隱藏
 // 組件中的類型。若必須從 COM 存取此組件中的類型，

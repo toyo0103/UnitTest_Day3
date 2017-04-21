@@ -5,21 +5,27 @@ using System.Linq;
 using System.Net;
 using Newtonsoft.Json;
 using UnitTestDay3.NetTools;
+using UnitTestDay3.Factory;
 
 namespace UnitTestDay3
 {
     public class PTX
     {
-        IRestSharp _MyRestSharp;
+        IRestSharp _MyRestSharp
+        {
+            get
+            {
+                //這邊改成用工廠建立MyRestSharp實體
+                return IRestSharpFactory.Generate();
+            }
+        }
 
         /// <summary>
         /// Construct
         /// </summary>
-        /// <param name="myRestSharp">外部注入呼叫API的實體</param>
-        public PTX(IRestSharp myRestSharp)
+        public PTX()
         {
-            //改由外部注入呼叫API的實體
-            this._MyRestSharp = myRestSharp;
+            //建構子移除
         }
 
         /// <summary>

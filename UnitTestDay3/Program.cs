@@ -13,7 +13,7 @@ namespace UnitTestDay3
         static void Main(string[] args)
         {
             //new PTX時變成要帶入呼叫API的實體
-            var PTXFunction = new PTX(new MyRestSharp());
+            var PTXFunction = new PTX();
 
             var Result = PTXFunction.Get("Taipei","307");
 

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusRouteDTO.cs" />
+    <Compile Include="Factory\IRestSharpFactory.cs" />
     <Compile Include="NetTools\IRestSharp.cs" />
     <Compile Include="NetTools\MyRestSharp.cs" />
     <Compile Include="Program.cs" />
